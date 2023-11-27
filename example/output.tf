@@ -10,6 +10,7 @@ output "ip_address" {
 
 output "primary" {
   value       = module.mssql.primary
+  sensitive   = true
   description = "The private IP address assigned for the master instance"
 }
 
