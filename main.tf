@@ -40,7 +40,7 @@ resource "random_password" "root-password" {
 #tfsec:ignore:google-sql-no-public-access
 resource "google_sql_database_instance" "default" {
   project             = data.google_client_config.current.project
-  name                = var.random_instance_name ? "${format("%s-sql", module.labels.id)}-${random_id.suffix[0].hex}" : format("%s-sql", module.labels.id)
+  name                = var.random_instance_name ? "${format("%s-mssql", module.labels.id)}-${random_id.suffix[0].hex}" : format("%s-sql", module.labels.id)
   database_version    = var.database_version
   region              = var.region
   encryption_key_name = var.encryption_key_name
@@ -155,7 +155,7 @@ resource "google_sql_database_instance" "default" {
 }
 
 resource "google_sql_database" "default" {
-  name       = format("%s-sql", module.labels.id)
+  name       = format("%s-mssql", module.labels.id)
   project    = data.google_client_config.current.project
   instance   = google_sql_database_instance.default.name
   charset    = var.db_charset
@@ -166,7 +166,7 @@ resource "google_sql_database" "default" {
 resource "google_sql_database" "additional_databases" {
   for_each   = local.databases
   project    = data.google_client_config.current.project
-  name       = format("%s-sql", module.labels.id)
+  name       = format("%s-mssql", module.labels.id)
   charset    = lookup(each.value, "charset", null)
   collation  = lookup(each.value, "collation", null)
   instance   = google_sql_database_instance.default.name
