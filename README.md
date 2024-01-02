@@ -21,8 +21,8 @@ To use this module, you should have Terraform installed and configured for GCP. 
     name                    = "app"
     environment             = "test"
     user_password           = "foobar"
-  random_instance_name      = true
-  deletion_protection       = false
+    random_instance_name    = true
+    deletion_protection     = false
     sql_server_audit_config = var.sql_server_audit_config
   }
 ```
