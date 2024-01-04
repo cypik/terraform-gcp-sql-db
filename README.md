@@ -9,11 +9,11 @@
 - [License](#license)
 
 ## Introduction
-This project deploys a Google Cloud infrastructure using Terraform to create **MSSQL-DB** .
+This project deploys a Google Cloud infrastructure using Terraform to create Mssql .
 ## Usage
 To use this module, you should have Terraform installed and configured for GCP. This module provides the necessary Terraform configuration for creating GCP resources, and you can customize the inputs as needed. Below is an example of how to use this module:
 
-# Example: _mssql-db_
+# Example: _Mssql_
 
 ```hcl
   module "mssql" {
@@ -43,17 +43,17 @@ Each module may have specific outputs. You can retrieve these outputs by referen
 - `name` : The name for Cloud SQL instance.
 - `first_ip_address` : The first IPv4 address of any type assigned.
 - `connection_name` : The connection name of the instance to be used in connection strings.
-- `ip_address` : The first public (PRIMARY) IPv4 address assigned for the master instance.
-- `private_ip_address` : The first private (PRIVATE) IPv4 address assigned for the master instance.
+- `ip_address` : The first `public (PRIMARY)` IPv4 address assigned for the master instance.
+- `private_ip_address` : The first `private (PRIVATE)` IPv4 address assigned for the master instance.
 - `self_link` : The URI of the master instance
 - `server_ca_cert` : The CA Certificate used to connect to the SQL Instance via SSL.
 - `service_account_email_address` : The service account email address assigned to the instance.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the [EXAMPLE](https://github.com/cypik/terraform-gcp-sql-db/tree/master/example) directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-gcp-mssql/tree/master/example) directory within this repository.
 
 ## Author
 Your Name Replace **'[License Name]'** and **'[Your Name]'** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/cypik/terraform-gcp-sql-db/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/cypik/terraform-gcp-mssql/blob/master/LICENSE) file for details.
