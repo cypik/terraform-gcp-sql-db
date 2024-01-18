@@ -1,5 +1,6 @@
 module "labels" {
-  source      = "git::https://github.com/cypik/terraform-gcp-labels.git?ref=v1.0.0"
+  source      = "cypik/labels/google"
+  version     = "1.0.1"
   name        = var.name
   environment = var.environment
   label_order = var.label_order
@@ -160,7 +161,7 @@ resource "google_sql_database" "default" {
   instance   = google_sql_database_instance.default.name
   charset    = var.db_charset
   collation  = var.db_collation
-  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default, google_sql_user.default, google_sql_user.additional_users]
+  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default, google_sql_user.default]
 }
 
 resource "google_sql_database" "additional_databases" {
@@ -170,7 +171,7 @@ resource "google_sql_database" "additional_databases" {
   charset    = lookup(each.value, "charset", null)
   collation  = lookup(each.value, "collation", null)
   instance   = google_sql_database_instance.default.name
-  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default, google_sql_user.default, google_sql_user.additional_users]
+  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default, google_sql_user.default]
 }
 
 resource "random_password" "user-password" {
@@ -209,14 +210,14 @@ resource "google_sql_user" "default" {
   depends_on = [null_resource.module_depends_on, google_sql_database_instance.default]
 }
 
-resource "google_sql_user" "additional_users" {
-  for_each   = local.users
-  project    = data.google_client_config.current.project
-  name       = format("%s-user", module.labels.id)
-  password   = each.value.random_password ? random_password.additional_passwords[each.value.name].result : each.value.password
-  instance   = google_sql_database_instance.default.name
-  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default]
-}
+#resource "google_sql_user" "additional_users" {
+#  for_each   = local.users
+#  project    = data.google_client_config.current.project
+#  name       = format("%s-user", module.labels.id)
+#  password   = each.value.random_password ? random_password.additional_passwords[each.value.name].result : each.value.password
+#  instance   = google_sql_database_instance.default.name
+#  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default]
+#}
 
 resource "null_resource" "module_depends_on" {
   triggers = {
