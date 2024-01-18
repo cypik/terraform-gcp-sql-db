@@ -19,7 +19,8 @@ To use this module, you should have Terraform installed and configured for GCP. 
 
 ```hcl
   module "mssql" {
-    source                  = "git::https://github.com/cypik/terraform-gcp-sql-db.git?ref=v1.0.0"
+    source                  = "cypik/mssql/google"
+    version                 = "1.0.1"
     name                    = "app"
     environment             = "test"
     user_password           = "foobar"
