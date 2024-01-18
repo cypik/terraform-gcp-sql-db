@@ -210,15 +210,6 @@ resource "google_sql_user" "default" {
   depends_on = [null_resource.module_depends_on, google_sql_database_instance.default]
 }
 
-#resource "google_sql_user" "additional_users" {
-#  for_each   = local.users
-#  project    = data.google_client_config.current.project
-#  name       = format("%s-user", module.labels.id)
-#  password   = each.value.random_password ? random_password.additional_passwords[each.value.name].result : each.value.password
-#  instance   = google_sql_database_instance.default.name
-#  depends_on = [null_resource.module_depends_on, google_sql_database_instance.default]
-#}
-
 resource "null_resource" "module_depends_on" {
   triggers = {
     value = length(var.module_depends_on)
