@@ -10,6 +10,8 @@ provider "google" {
 module "mssql" {
   source                  = "../"
   name                    = "app"
+  user_name               = "mssql"
+  db_name                 = "testdb"
   environment             = "test"
   user_password           = "foobar"
   random_instance_name    = true

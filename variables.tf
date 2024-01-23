@@ -315,3 +315,15 @@ variable "time_zone" {
   type        = string
   default     = null
 }
+
+variable "db_name" {
+  type        = string
+  default     = ""
+  description = "The name of the database to be created."
+}
+
+variable "user_name" {
+  description = "The name of the default user"
+  type        = string
+  default     = ""
+}

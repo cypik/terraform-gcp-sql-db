@@ -156,7 +156,7 @@ resource "google_sql_database_instance" "default" {
 }
 
 resource "google_sql_database" "default" {
-  name       = format("%s-mssql", module.labels.id)
+  name       = var.db_name
   project    = data.google_client_config.current.project
   instance   = google_sql_database_instance.default.name
   charset    = var.db_charset
@@ -203,7 +203,7 @@ resource "random_password" "additional_passwords" {
 }
 
 resource "google_sql_user" "default" {
-  name       = format("%s-user", module.labels.id)
+  name       = var.user_name
   project    = data.google_client_config.current.project
   instance   = google_sql_database_instance.default.name
   password   = coalesce(var.user_password, random_password.user-password.result)

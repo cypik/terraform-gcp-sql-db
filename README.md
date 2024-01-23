@@ -18,16 +18,18 @@ To use this module, you should have Terraform installed and configured for GCP. 
 # Example: mssql
 
 ```hcl
-  module "mssql" {
+   module "mssql" {
     source                  = "cypik/mssql/google"
     version                 = "1.0.1"
     name                    = "app"
+    user_name               = "mssql"
+    db_name                 = "testdb"
     environment             = "test"
     user_password           = "foobar"
     random_instance_name    = true
     deletion_protection     = false
     sql_server_audit_config = var.sql_server_audit_config
-  }
+ }
 ```
 This example demonstrates how to create various GCP resources using the provided modules. Adjust the input values to suit your specific requirements.
 
@@ -95,6 +97,7 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 | <a name="input_database_version"></a> [database\_version](#input\_database\_version) | The database version to use: SQLSERVER\_2017\_STANDARD, SQLSERVER\_2017\_ENTERPRISE, SQLSERVER\_2017\_EXPRESS, or SQLSERVER\_2017\_WEB | `string` | `"SQLSERVER_2017_STANDARD"` | no |
 | <a name="input_db_charset"></a> [db\_charset](#input\_db\_charset) | The charset for the default database | `string` | `""` | no |
 | <a name="input_db_collation"></a> [db\_collation](#input\_db\_collation) | The collation for the default database. Example: 'en\_US.UTF8' | `string` | `""` | no |
+| <a name="input_db_name"></a> [db\_name](#input\_db\_name) | The name of the database to be created. | `string` | `""` | no |
 | <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | The optional timeout that is applied to limit long database deletes. | `string` | `"30m"` | no |
 | <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | Used to block Terraform from deleting a SQL Instance. | `bool` | `true` | no |
 | <a name="input_deletion_protection_enabled"></a> [deletion\_protection\_enabled](#input\_deletion\_protection\_enabled) | Enables protection of an instance from accidental deletion protection across all surfaces (API, gcloud, Cloud Console and Terraform). | `bool` | `false` | no |
@@ -126,6 +129,7 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 | <a name="input_time_zone"></a> [time\_zone](#input\_time\_zone) | The time zone for SQL instance. | `string` | `null` | no |
 | <a name="input_update_timeout"></a> [update\_timeout](#input\_update\_timeout) | The optional timeout that is applied to limit long database updates. | `string` | `"30m"` | no |
 | <a name="input_user_labels"></a> [user\_labels](#input\_user\_labels) | The key/value labels for the master instances. | `map(string)` | `{}` | no |
+| <a name="input_user_name"></a> [user\_name](#input\_user\_name) | The name of the default user | `string` | `""` | no |
 | <a name="input_user_password"></a> [user\_password](#input\_user\_password) | The password for the default user. If not set, a random one will be generated and available in the generated\_user\_password output variable. | `string` | `""` | no |
 | <a name="input_zone"></a> [zone](#input\_zone) | The zone for the master instance. | `string` | `"us-central1-a"` | no |
 
