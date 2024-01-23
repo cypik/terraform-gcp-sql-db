@@ -1,5 +1,5 @@
 provider "google" {
-  project = "opz0-397319"
+  project = "local-concord-408802"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -10,9 +10,11 @@ provider "google" {
 module "mssql" {
   source                  = "../"
   name                    = "app"
+  user_name               = "mssql"
+  db_name                 = "testdb"
   environment             = "test"
-  random_instance_name    = true
   user_password           = "foobar"
+  random_instance_name    = true
   deletion_protection     = false
   sql_server_audit_config = var.sql_server_audit_config
 }

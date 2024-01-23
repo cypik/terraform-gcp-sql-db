@@ -5,7 +5,7 @@ output "name" {
 
 output "ip_address" {
   value       = google_sql_database_instance.default.ip_address
-  description = "The IPv4 addesses assigned for the master instance"
+  description = "The IPv4 addresses assigned for the master instance"
 }
 
 output "private_ip_address" {
@@ -42,17 +42,6 @@ output "generated_user_password" {
   description = "The auto generated default user password if not input password was provided"
   value       = random_password.user-password.result
   sensitive   = true
-}
-
-output "additional_users" {
-  description = "List of maps of additional users and passwords"
-  value = [for r in google_sql_user.additional_users :
-    {
-      name     = r.name
-      password = r.password
-    }
-  ]
-  sensitive = true
 }
 
 output "root_password" {

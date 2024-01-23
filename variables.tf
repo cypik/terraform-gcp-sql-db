@@ -18,13 +18,13 @@ variable "label_order" {
 
 variable "managedby" {
   type        = string
-  default     = ""
-  description = "ManagedBy, eg 'Opz0'."
+  default     = "cypik"
+  description = "ManagedBy, eg 'cypik'."
 }
 
 variable "repository" {
   type        = string
-  default     = ""
+  default     = "https://github.com/cypik/terraform-google-mssql"
   description = "Terraform current module repo"
 }
 
@@ -314,4 +314,16 @@ variable "time_zone" {
   description = "The time zone for SQL instance."
   type        = string
   default     = null
+}
+
+variable "db_name" {
+  type        = string
+  default     = ""
+  description = "The name of the database to be created."
+}
+
+variable "user_name" {
+  description = "The name of the default user"
+  type        = string
+  default     = ""
 }
