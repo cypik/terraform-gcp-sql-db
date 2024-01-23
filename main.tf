@@ -167,7 +167,7 @@ resource "google_sql_database" "default" {
 resource "google_sql_database" "additional_databases" {
   for_each   = local.databases
   project    = data.google_client_config.current.project
-  name       = format("%s-mssql", module.labels.id)
+  name       = each.value.name
   charset    = lookup(each.value, "charset", null)
   collation  = lookup(each.value, "collation", null)
   instance   = google_sql_database_instance.default.name
