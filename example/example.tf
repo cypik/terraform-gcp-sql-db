@@ -1,5 +1,5 @@
 provider "google" {
-  project = "local-concord-408802"
+  project = "soy-smile-435017-c5"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -8,7 +8,7 @@ provider "google" {
 ##### sql-server module call.
 #####==============================================================================
 module "mssql" {
-  source                  = "../"
+  source                  = "./../"
   name                    = "app"
   user_name               = "mssql"
   db_name                 = "testdb"

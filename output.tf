@@ -38,20 +38,20 @@ output "service_account_email_address" {
   description = "The service account email address assigned to the master instance"
 }
 
-output "generated_user_password" {
-  description = "The auto generated default user password if not input password was provided"
-  value       = random_password.user-password.result
+output "generated_user_passwords" {
+  value       = [for pwd in random_password.user-password : pwd.result]
   sensitive   = true
+  description = "List of auto-generated passwords"
 }
 
 output "root_password" {
-  description = "MSSERVER password for the root user. If not set, a random one will be generated and available in the root_password output variable."
   value       = coalesce(var.root_password, random_password.root-password.result)
   sensitive   = true
+  description = "MSSERVER password for the root user. If not set, a random one will be generated and available in the root_password output variable."
 }
 
 output "primary" {
   value       = google_sql_database_instance.default
-  description = "The `google_sql_database_instance` resource representing the primary instance"
   sensitive   = true
+  description = "The `google_sql_database_instance` resource representing the primary instance"
 }
