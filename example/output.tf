@@ -31,6 +31,7 @@ output "self_link" {
 
 output "server_ca_cert" {
   value       = module.mssql.server_ca_cert
+  sensitive   = true
   description = "The CA certificate information used to connect to the SQL instance via SSL"
 }
 
@@ -40,7 +41,7 @@ output "service_account_email_address" {
 }
 
 output "generated_user_password" {
-  description = "The auto generated default user password if not input password was provided"
-  value       = module.mssql.generated_user_password
+  value       = module.mssql.generated_user_passwords
   sensitive   = true
+  description = "The auto generated default user password if not input password was provided"
 }
